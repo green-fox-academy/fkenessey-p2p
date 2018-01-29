@@ -1,6 +1,7 @@
 package com.greenfoxacademy.p2p.services;
 
 import com.greenfoxacademy.p2p.factories.WebFactory;
+import com.greenfoxacademy.p2p.models.DTOs.ErrorMessageDTO;
 import com.greenfoxacademy.p2p.models.User;
 import com.greenfoxacademy.p2p.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,20 @@ public class UserService {
     return userFullList;
   }
 
-  public boolean saveUser(User user) {
+  public boolean saveUserIfNameNotInTheRepository(User user) {
     if (userRepository.findAllByUsername(user.getUsername()).isEmpty()) {
       userRepository.save(user);
       return true;
     } else {
       return false;
     }
+  }
+
+  public boolean isEnteredUserNotNull(User user) {
+    return !(user.getUsername().isEmpty());
+  }
+
+  public ErrorMessageDTO sendError(String errorMessage) {
+    return webFactory.createErrorMessageDTO(errorMessage);
   }
 }

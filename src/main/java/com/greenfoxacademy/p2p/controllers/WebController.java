@@ -25,17 +25,28 @@ public class WebController {
   @GetMapping("/enter")
   public String enterUser(Model model) {
     model.addAttribute("user", userService.createNewUser());
+    model.addAttribute("errorDto", userService.sendError(""));
     return "enter";
   }
 
   @PostMapping("/enter")
   public String addUser(@ModelAttribute(value = "user") User user, Model model) {
-    boolean ifSaved = userService.saveUser(user);
-    if (ifSaved) {
-      return "redirect:/";
+    boolean ifSaved = userService.saveUserIfNameNotInTheRepository(user);
+    if (userService.isEnteredUserNotNull(user)) {
+      if (ifSaved) {
+        return "redirect:/";
+      } else {
+        model.addAttribute("errorDto", userService
+                .sendError("The username already exists"));
+        return "/enter";
+      }
     } else {
+      model.addAttribute("errorDto", userService
+              .sendError("The username field is empty"));
       return "/enter";
     }
+
+
 
   }
 }
