@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Enter User</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+
+<h1>Enter user name</h1>
+
+<form th:action="@{/enter}" method="post">
+
+    <label for="username" >Choose your name: </label>
+    <input type="hidden" th:field="${user.id}"/>
+    <input type="text" th:field="${user.username}"/>
+    <input class="btn btn-danger" value="Submit" type="submit"/>
+
+</form>
+
+</body>
+</html>
