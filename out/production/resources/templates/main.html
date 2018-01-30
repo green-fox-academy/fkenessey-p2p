@@ -9,7 +9,16 @@
 
 <h1>Peer to Peer Chat application</h1>
 
-<a th:href="@{/enter}">Enter</a>
+<p th:text="${errorDto.errorMessage}"></p>
+
+<form th:action="@{/}" method="post">
+    <label for="username" >Your username: </label>
+    <input type="hidden" th:field="${user.id}" th:placeholder="${user.id}"/>
+    <input type="text" id="username" th:field="${user.username}" th:placeholder="${user.username}"/>
+    <input class="btn btn-danger" value="Update" type="submit"/>
+</form>
+
+<a th:href="@{/enter}">Enter new user</a>
 
 </body>
 </html>

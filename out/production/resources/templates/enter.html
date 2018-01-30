@@ -8,11 +8,10 @@
 <body>
 
 <h1>Enter user name</h1>
-
+<p th:text="${errorDto.errorMessage}"></p>
 <form th:action="@{/enter}" method="post">
 
     <label for="username" >Choose your name: </label>
-    <p th:text="${errorDto.errorMessage}"></p>
     <input type="hidden" th:field="${user.id}"/>
     <input type="text" th:field="${user.username}"/>
     <input class="btn btn-danger" value="Enter" type="submit"/>

@@ -37,6 +37,16 @@ public class UserService {
     }
   }
 
+  public boolean ifUserExist() {
+    return !(getAllUsers().isEmpty());
+  }
+
+  public User updateUser(User user) {
+    userRepository.findOne(user.getId()).setUsername(user.getUsername());
+    userRepository.save(userRepository.findOne(user.getId()));
+    return userRepository.findOne(user.getId());
+  }
+
   public boolean isEnteredUserNotNull(User user) {
     return !(user.getUsername().isEmpty());
   }
