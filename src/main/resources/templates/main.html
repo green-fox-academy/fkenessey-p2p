@@ -11,11 +11,23 @@
 
 <p th:text="${errorDto.errorMessage}"></p>
 
-<form th:action="@{/}" method="post">
+<form th:action="@{/update}" method="post">
     <label for="username" >Your username: </label>
-    <input type="hidden" th:field="${user.id}" th:placeholder="${user.id}"/>
+    <input type="hidden" th:field="${user.id}"/>
     <input type="text" id="username" th:field="${user.username}" th:placeholder="${user.username}"/>
     <input class="btn btn-danger" value="Update" type="submit"/>
+</form>
+
+<ul th:each="message : ${messages}">
+    <li th:text="${message.username}"></li>
+    <li th:text="${message.text}"></li>
+</ul>
+
+<form th:action="@{/submit}" method="post">
+    <input type="text" th:field="${newmessage.text}"/>
+    <input type="hidden" th:field="${user.id}"/>
+    <input type="hidden" th:field="${user.username}"/>
+    <input value="Submit" type="submit"/>
 </form>
 
 </body>

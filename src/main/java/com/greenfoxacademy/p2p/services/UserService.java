@@ -28,6 +28,10 @@ public class UserService {
     return userFullList;
   }
 
+  public User findUserById(Long id) {
+    return userRepository.findById(id);
+  }
+
   public boolean saveUserIfNameNotInTheRepository(User user) {
     if (userRepository.findAllByUsername(user.getUsername()).isEmpty()) {
       userRepository.save(user);
