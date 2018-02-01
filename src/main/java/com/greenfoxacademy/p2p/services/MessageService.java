@@ -42,8 +42,6 @@ public class MessageService {
   }
 
   public void addMessageToList(Message message, User user) {
-    List<Message> messageList = getAllMessages();
-    message.setUsername(user.getUsername());
-    messageRepository.save(message);
+    messageRepository.save(webFactory.createNewMessageWithParameters(user.getUsername(), message.getText()));
   }
 }

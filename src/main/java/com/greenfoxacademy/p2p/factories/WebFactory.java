@@ -28,6 +28,10 @@ public class WebFactory {
     return new Message();
   }
 
+  public Message createNewMessageWithParameters(String username, String text) {
+    return new Message(username, text);
+  }
+
   public List<Message> createInitialMessageList() {
     List<Message> messageList = new ArrayList<>();
     messageList.add(createInitialMessage());
