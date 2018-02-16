@@ -1,5 +1,7 @@
 package com.greenfoxacademy.p2p.controllers;
 
+import com.greenfoxacademy.p2p.models.Client;
+import com.greenfoxacademy.p2p.models.DTOs.MessageResponseListDTO;
 import com.greenfoxacademy.p2p.models.DTOs.ReceiveDTO;
 import com.greenfoxacademy.p2p.models.Message;
 import com.greenfoxacademy.p2p.models.User;
@@ -21,4 +23,10 @@ public class AppRestController {
     return new ReceiveDTO(new Message(receiveDTO.getMessage().getUsername(), "Ok"));
   }
 
+  @CrossOrigin("*")
+  @GetMapping("/api/message/receive")
+  public MessageResponseListDTO showMessages(@RequestBody Client client) {
+
+    return new MessageResponseListDTO(messageService.getAllMessages(), client);
+  }
 }

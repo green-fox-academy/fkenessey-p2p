@@ -5,7 +5,7 @@ public class Client {
   private String id;
 
   public Client() {
-    this.id = System.getenv("CHAT_APP_UNIQUE_I");
+    this.id = System.getenv("CHAT_APP_UNIQUE_ID");
   }
 
   public String getId() {
