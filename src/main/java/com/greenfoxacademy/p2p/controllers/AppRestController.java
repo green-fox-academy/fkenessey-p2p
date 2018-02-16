@@ -25,8 +25,8 @@ public class AppRestController {
 
   @CrossOrigin("*")
   @GetMapping("/api/message/receive")
-  public MessageResponseListDTO showMessages(@RequestBody Client client) {
+  public MessageResponseListDTO showMessages() {
 
-    return new MessageResponseListDTO(messageService.getAllMessages(), client);
+    return new MessageResponseListDTO(messageService.getAllMessages(), new Client());
   }
 }
