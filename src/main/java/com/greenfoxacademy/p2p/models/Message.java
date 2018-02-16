@@ -1,7 +1,8 @@
 package com.greenfoxacademy.p2p.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 @Table(name = "message_table")
@@ -12,16 +13,16 @@ public class Message {
   private long id;
   private String username;
   private String text;
-  private String timestamp;
+  private Timestamp timestamp;
 
   public Message() {
-    this.timestamp = LocalDateTime.now().toString();
+    this.timestamp = Timestamp.from(Instant.now());
   }
 
   public Message(String username, String text) {
     this.username = username;
     this.text = text;
-    this.timestamp = LocalDateTime.now().toString();
+    this.timestamp = Timestamp.from(Instant.now());
   }
 
   public long getId() {
@@ -48,11 +49,11 @@ public class Message {
     this.text = text;
   }
 
-  public String getTimestamp() {
+  public Timestamp getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(String timestamp) {
+  public void setTimestamp(Timestamp timestamp) {
     this.timestamp = timestamp;
   }
 }

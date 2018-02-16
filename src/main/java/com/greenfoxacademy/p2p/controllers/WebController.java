@@ -56,14 +56,13 @@ public class WebController {
 
     if (userService.isEnteredUserNotNull(user)) {
       userService.updateUser(user);
-      return "redirect:/";
     } else {
       ErrorMessageDTO errorMessageDTO = new ErrorMessageDTO();
       errorMessageDTO.setErrorMessage("The username field is empty");
       redirectAttributes.addFlashAttribute("errorDto", errorMessageDTO);
       redirectAttributes.addFlashAttribute("user", user);
-      return "redirect:/";
     }
+    return "redirect:/";
   }
 
   @PostMapping("/submit")
@@ -79,7 +78,7 @@ public class WebController {
       } else {
         model.addAttribute("messages", messageService.createNewMessageList());
       }
-      return "main";
+      return "redirect:/";
     } else {
       messageService.addMessageToList(newMessage, user);
       return "redirect:/";
